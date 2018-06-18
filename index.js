@@ -201,6 +201,17 @@ function updateSearchTerm(term) {
   STORE.searchTerm = term;
 }
 
+function handleSearchItemChange() {
+  $('.js-search-term').on('input', function(event){
+    const term = $('.js-search-term').val();
+    if(term === ''){
+      updateSearchTerm(term);
+      renderShoppingList();
+    }
+  });
+}
+
+
 function handleSearchItemSubmit() {
   $('#js-search-form').on('submit', function(event) {
     event.preventDefault();
@@ -245,6 +256,7 @@ function getItemIndexFromElement(elem) {
 function handleShoppingList() {
   renderShoppingList();
   handleNewItemSubmit();
+  handleSearchItemChange();
   handleSearchItemSubmit();
   handleToggleCheckedVisibility();
   handleItemCheckClicked();
